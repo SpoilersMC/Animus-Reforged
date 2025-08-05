@@ -30,8 +30,7 @@ group = "com.teamdman_9201.nova"
 archivesBaseName = "NOVA"
 version = "${getDate()}"
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 def getDate() {
     def date = new Date()
@@ -49,12 +48,10 @@ configFile.withReader {
 minecraft {
     version = config.mc_version + "-" + config.forge_version
     runDir = "run"
+    //mappings = "stable_12"
 
     replaceIn "NOVA.java"
     replace "@VERSION@", getDate()
-
-    if (project.hasProperty('mappings_version'))
-        mappings = project.mappings_version
 }
 
 processResources {
