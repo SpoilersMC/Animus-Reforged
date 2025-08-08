@@ -1,8 +1,6 @@
 #Items
-item.itemSuperCoal.name=Super Coal
 item.itemUnstableCoal.name=Unstable Coal
 item.itemUnstableCoal.lore=The embodiment of a bad time
-item.itemSlotIdentifier.name=Slot Identifier
 item.itemSigilOfTransposition.name=Sigil of Transposition
 item.itemSigilOfChains.name=Sigil of Phantom Chains
 item.itemMobSoul.name=Mob Soul
