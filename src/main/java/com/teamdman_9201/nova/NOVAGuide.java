@@ -56,8 +56,6 @@ public class NOVAGuide {
         addPage("Sickles", items, "items.Sickles.body", new PageIRecipe(new ShapedOreRecipe(NOVA.itemWoodSickle, "AAA", "A B", " B ", 'A', Blocks.planks, 'B', Items.stick)), new PageIRecipe(new ShapedOreRecipe(NOVA.itemStoneSickle, "AAA", "A B", " B ", 'A', Blocks.cobblestone, 'B', Items.stick)), new PageIRecipe(new ShapedOreRecipe(NOVA.itemIronSickle, "AAA", "A B", " B ", 'A', Items.iron_ingot, 'B', Items.stick)), new PageIRecipe(new ShapedOreRecipe(NOVA.itemGoldSickle, "AAA", "A B", " B ", 'A', Items.gold_ingot, 'B', Items.stick)), new PageIRecipe(new ShapedOreRecipe(NOVA.itemDiamondSickle, "AAA", "A B", " B ", 'A', Items.diamond, 'B', Items.stick)));
         addPage("Unstable Coal", items, "items.UnstableCoal.body");
         addPage("Blood Trees", items, "items.Sapling.body");
-        addPage("Orb of Redundancy", items, "items.RedundantOrb.body", new PageIRecipe(new ShapedOreRecipe(NOVA.itemRedundantOrb, "AAA", "ABA", "AAA", 'A', Items.diamond, 'B', Blocks.dirt)));
-        addPage("Dev Item", items, "items.Dev.body");
         addPage("Healing Fragments", items, "items.HealingFragment.body");
 
         addPage("Sigil of Chains", sigils, "sigils.SigilOfChains.body", new PageIRecipe(new ShapedOreRecipe(NOVA.itemSigilOfChains, "ABA", "DCD", "AEA", 'A', Blocks.iron_bars, 'B', Items.glass_bottle, 'C', ModItems.imbuedSlate, 'D', Items.ender_pearl, 'E', ModItems.magicianBloodOrb)));

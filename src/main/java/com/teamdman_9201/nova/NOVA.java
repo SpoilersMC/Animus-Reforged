@@ -82,7 +82,6 @@ public class NOVA {
     public static Item itemMobSoul;
     public static Item itemSigilOfChains;
     public static Item itemBloodApple;
-    public static Item itemRedundantOrb;
     public static Item itemAltarDiviner;
     public static Item itemHealingFragment;
     public static HashMap<String, Integer> ritualData = new HashMap<String, Integer>();
@@ -124,7 +123,6 @@ public class NOVA {
         setupItem(itemSigilOfChains, "itemSigilOfChains", mainTab);
         setupItem(itemMobSoul, "itemMobSoul", mainTab);
         setupItem(itemBloodApple, "itemBloodApple", mainTab);
-        setupItem(itemRedundantOrb, "itemRedundantOrb", mainTab);
         setupItem(itemSigilOfConsumption, "itemSigilOfConsumption", mainTab);
         setupItem(itemAltarDiviner, "itemAltarDiviner", mainTab);
         setupItem(itemSigilOfFastBuilder, "itemSigilOfFastBuilder", mainTab);
@@ -149,10 +147,6 @@ public class NOVA {
             GameRegistry.addRecipe(new ShapedBloodOrbRecipe(new ItemStack(itemSigilOfFastBuilder), "ABA", "BCB", "ADA", 'A', Items.sugar, 'B', Items.potionitem, 'C', ModItems.demonicSlate, 'D', ModItems.archmageBloodOrb));
         if(!blacklist.get("itemAltarDiviner"))
             GameRegistry.addRecipe(new ShapedBloodOrbRecipe(new ItemStack(itemAltarDiviner), "ABA", "BCB", "ADA", 'A', ModBlocks.bloodRune, 'B', Blocks.stone, 'C', Items.stick, 'D', ModItems.weakBloodOrb));
-        if(!blacklist.get("itemRedundantOrb")) {
-            GameRegistry.addRecipe(new ItemStack(itemRedundantOrb), "AAA", "ABA", "AAA", 'A', Blocks.furnace, 'B', Items.diamond);
-            GameRegistry.addSmelting(new ItemStack(itemRedundantOrb), new ItemStack(itemRedundantOrb), 1);
-        }
         if(!blacklist.get("blockDirtChest"))
             GameRegistry.addRecipe(new ItemStack(blockDirtChest), "AAA", "ABA", "AAA", 'A', Blocks.dirt, 'B', Blocks.planks);
         if(!blacklist.get("itemWoodenSickle"))
@@ -198,7 +192,6 @@ public class NOVA {
         itemSigilOfChains = new ItemSigilOfChains();
         itemMobSoul = new ItemMobSoul();
         itemBloodApple = new ItemBloodApple(2, 0.1F, false);
-        itemRedundantOrb = new ItemRedundantOrb();
         itemSigilOfConsumption = new ItemSigilOfConsumption();
         itemAltarDiviner = new ItemAltarDiviner();
         itemSigilOfFastBuilder = new ItemSigilOfFastBuilder();
