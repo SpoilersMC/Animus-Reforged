@@ -83,7 +83,6 @@ public class NOVA {
     public static Item itemSigilOfChains;
     public static Item itemBloodApple;
     public static Item itemRedundantOrb;
-    public static Item itemDev;
     public static Item itemAltarDiviner;
     public static Item itemHealingFragment;
     public static HashMap<String, Integer> ritualData = new HashMap<String, Integer>();
@@ -126,7 +125,6 @@ public class NOVA {
         setupItem(itemMobSoul, "itemMobSoul", mainTab);
         setupItem(itemBloodApple, "itemBloodApple", mainTab);
         setupItem(itemRedundantOrb, "itemRedundantOrb", mainTab);
-        setupItem(itemDev, "itemDev", mainTab);
         setupItem(itemSigilOfConsumption, "itemSigilOfConsumption", mainTab);
         setupItem(itemAltarDiviner, "itemAltarDiviner", mainTab);
         setupItem(itemSigilOfFastBuilder, "itemSigilOfFastBuilder", mainTab);
@@ -201,7 +199,6 @@ public class NOVA {
         itemMobSoul = new ItemMobSoul();
         itemBloodApple = new ItemBloodApple(2, 0.1F, false);
         itemRedundantOrb = new ItemRedundantOrb();
-        itemDev = new ItemDev();
         itemSigilOfConsumption = new ItemSigilOfConsumption();
         itemAltarDiviner = new ItemAltarDiviner();
         itemSigilOfFastBuilder = new ItemSigilOfFastBuilder();
