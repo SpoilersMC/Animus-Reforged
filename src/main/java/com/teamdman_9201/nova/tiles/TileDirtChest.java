@@ -15,6 +15,6 @@ public class TileDirtChest extends GenericInventory {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack item) {
-        return true; //slot>1?false:slot==1?true:false;
+        return true;
     }
 }

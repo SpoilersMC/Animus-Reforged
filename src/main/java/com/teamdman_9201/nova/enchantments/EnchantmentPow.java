@@ -24,7 +24,7 @@ public class EnchantmentPow extends Enchantment {
     }
 
     public static boolean func_92094_a(int p_92094_0_, Random p_92094_1_) {
-        return p_92094_0_ <= 0 ? false : p_92094_1_.nextFloat() < 0.15F * (float) p_92094_0_;
+        return p_92094_0_ <= 0 ? false : p_92094_1_.nextFloat() < 0.15F * (float)p_92094_0_;
     }
 
     public static int func_92095_b(int p_92095_0_, Random p_92095_1_) {
@@ -33,19 +33,18 @@ public class EnchantmentPow extends Enchantment {
 
     @Override
     public void func_151367_b(EntityLivingBase living, Entity ent, int p_151367_3_) {
-        Random    random    = living.getRNG();
+        Random random = living.getRNG();
         ItemStack itemstack = EnchantmentHelper.func_92099_a(Enchantment.thorns, living);
 
-        if (func_92094_a(p_151367_3_, random)) {
-            ent.addVelocity(ent.posX - living.posX, (ent.posY - living.posY) + 1.5, ent.posZ -
-                    living.posZ);
+        if(func_92094_a(p_151367_3_, random)) {
+            ent.addVelocity(ent.posX - living.posX, (ent.posY - living.posY) + 1.5, ent.posZ - living.posZ);
             // volume and pitch
             ent.playSound(NOVA.MODID + ":" + "enchantPow", 0.5F, 1.0F);
 
-            if (itemstack != null) {
+            if(itemstack != null) {
                 itemstack.damageItem(3, living);
             }
-        } else if (itemstack != null) {
+        } else if(itemstack != null) {
             itemstack.damageItem(1, living);
         }
     }
@@ -58,7 +57,7 @@ public class EnchantmentPow extends Enchantment {
     }
 
     /**
-     * Returns the maximum value of enchantability nedded on the enchantment level passed.
+     * Returns the maximum value of enchantability needed on the enchantment level passed.
      */
     public int getMaxEnchantability(int p_77317_1_) {
         return super.getMinEnchantability(p_77317_1_) + 50;

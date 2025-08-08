@@ -1,12 +1,14 @@
 package com.teamdman_9201.nova.rituals;
 
+import com.teamdman_9201.nova.NOVA;
+
 import WayofTime.alchemicalWizardry.api.alchemy.energy.ReagentRegistry;
 import WayofTime.alchemicalWizardry.api.rituals.IMasterRitualStone;
 import WayofTime.alchemicalWizardry.api.rituals.RitualComponent;
 import WayofTime.alchemicalWizardry.api.rituals.RitualEffect;
 import WayofTime.alchemicalWizardry.api.soulNetwork.SoulNetworkHandler;
 import WayofTime.alchemicalWizardry.common.spell.complex.effect.SpellHelper;
-import com.teamdman_9201.nova.NOVA;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -31,15 +33,15 @@ public class RitualEffectLuna extends RitualEffect {
         int startChunkX = ritualX >> 4;
         int startChunkZ = ritualZ >> 4;
         IChunkProvider provider = world.getChunkProvider();
-        for (int chunkX = startChunkX - radius; chunkX <= startChunkX + radius; chunkX++) {
-            for (int chunkZ = startChunkZ - radius; chunkZ <= startChunkZ + radius; chunkZ++) {
+        for(int chunkX = startChunkX - radius; chunkX <= startChunkX + radius; chunkX++) {
+            for(int chunkZ = startChunkZ - radius; chunkZ <= startChunkZ + radius; chunkZ++) {
                 provider.loadChunk(chunkX, chunkZ);
-                for (int x = 0; x < 16; x++) {
-                    for (int z = 0; z < 16; z++) {
-                        for (int y = 254; y > 1; y--) {
+                for(int x = 0; x < 16; x++) {
+                    for(int z = 0; z < 16; z++) {
+                        for(int y = 254; y > 1; y--) {
                             int wx = chunkX * 16 + x;
                             int wz = chunkZ * 16 + z;
-                            if (world.getBlock(wx, y, wz).getLightValue() > 0)
+                            if(world.getBlock(wx, y, wz).getLightValue() > 0)
                                 return new int[]{wx, y, wz};
                         }
                     }
@@ -83,29 +85,25 @@ public class RitualEffectLuna extends RitualEffect {
         int y = ritualStone.getYCoord();
         int z = ritualStone.getZCoord();
         int currentEssence = SoulNetworkHandler.getCurrentEssence(owner);
-        if (currentEssence < this.getCostPerRefresh()) {
+        if(currentEssence < this.getCostPerRefresh()) {
             EntityPlayer entityOwner = SpellHelper.getPlayerForUsername(owner);
-            if (entityOwner == null) {
-                return;
-            }
+            if(entityOwner == null) return;
             SoulNetworkHandler.causeNauseaToPlayer(owner);
         } else {
             int radius = this.canDrainReagent(ritualStone, ReagentRegistry.virtusReagent, reagentDrain, false) ? 5 : 1;
             int[] pos = getNextBlock(world, x, z, radius);
-            if (pos != null) {
+            if(pos != null) {
                 Block light = world.getBlock(pos[0], pos[1], pos[2]);
                 int meta = world.getBlockMetadata(pos[0], pos[1], pos[2]);
                 light.dropBlockAsItem(world, x, y + 1, z, meta, 0);
                 world.setBlockToAir(pos[0], pos[1], pos[2]);
-                if (radius == 5)
+                if(radius == 5)
                     this.canDrainReagent(ritualStone, ReagentRegistry.virtusReagent, reagentDrain, true);
                 SoulNetworkHandler.syphonFromNetwork(owner, this.getCostPerRefresh());
             }
         }
-        if (world.rand.nextInt(10) == 0) {
+        if(world.rand.nextInt(10) == 0) {
             SpellHelper.sendIndexedParticleToAllAround(world, x, y, z, 20, world.provider.dimensionId, 1, x, y, z);
         }
     }
-
 }
-

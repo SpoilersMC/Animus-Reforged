@@ -1,20 +1,23 @@
 package com.teamdman_9201.nova.gui;
 
 import com.teamdman_9201.nova.NOVA;
-import cpw.mods.fml.client.config.IConfigElement;
-import net.minecraft.client.gui.GuiScreen;
+import static com.teamdman_9201.nova.NOVAConfig.config;
+
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
+
+import cpw.mods.fml.client.config.GuiConfig;
+import cpw.mods.fml.client.config.IConfigElement;
+
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.teamdman_9201.nova.NOVAConfig.config;
-
 /**
  * Created by TeamDman on 2015-05-14.
  */
-public class ConfigGui extends cpw.mods.fml.client.config.GuiConfig {
+public class ConfigGui extends GuiConfig {
 
     public ConfigGui(GuiScreen parent) {
         super(parent, getConfigElements(parent), NOVA.MODID, false, false, NOVA.MODID);
@@ -35,5 +38,4 @@ public class ConfigGui extends cpw.mods.fml.client.config.GuiConfig {
 
         return list;
     }
-
 }

@@ -16,9 +16,9 @@ public class ItemBlockAntiBlock extends ItemBlock {
         super(p_i45328_1_);
     }
 
-	@Override
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List data, boolean wut) {
-        if (stack.hasTagCompound() && stack.getTagCompound().getString("ID") != null){
+        if(stack.hasTagCompound() && stack.getTagCompound().getString("ID") != null) {
             String blockName = Block.getBlockById(stack.getTagCompound().getInteger("ID")).getLocalizedName();
             data.add("Replacing: " + blockName);
         }

@@ -10,6 +10,7 @@ import java.util.List;
  * Created by TeamDman on 2015-10-09.
  */
 public class ItemHealingFragment extends Item {
+
     public ItemHealingFragment() {
         setMaxStackSize(1);
     }
@@ -23,5 +24,4 @@ public class ItemHealingFragment extends Item {
     public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player) {
         return false;
     }
-
 }

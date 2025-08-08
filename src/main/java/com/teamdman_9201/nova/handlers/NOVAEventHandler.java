@@ -2,15 +2,18 @@ package com.teamdman_9201.nova.handlers;
 
 import com.teamdman_9201.nova.NOVA;
 import com.teamdman_9201.nova.NOVAConfig;
+
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
+
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
 
 public class NOVAEventHandler {
 
@@ -36,7 +39,7 @@ public class NOVAEventHandler {
             return;
         int frags = 0;
         for(int i = 0; i < open.inventorySlots.size(); i++) {
-            Slot slot = (Slot) open.inventorySlots.get(i);
+            Slot slot = (Slot)open.inventorySlots.get(i);
             if(slot.getHasStack() && slot.getStack().getItem() == NOVA.itemHealingFragment)
                 frags++;
         }

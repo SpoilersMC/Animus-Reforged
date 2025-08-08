@@ -12,12 +12,11 @@ import net.minecraft.tileentity.TileEntity;
  * Created by TeamDman on 2015-04-04.
  */
 public class GenericInventory extends TileEntity implements ISidedInventory {
-
     public ItemStack[] items;
-    public int[]       slotsTop;
-    public int[]       slotsBottom;
-    public int[]       slotsSides;
-    public String      containerName;
+    public int[] slotsTop;
+    public int[] slotsBottom;
+    public int[] slotsSides;
+    public String containerName;
 
     public GenericInventory(int items, String name, int[] top, int[] bottom, int[] sides) {
         this.items = new ItemStack[items];
@@ -28,12 +27,12 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
     }
 
     public ItemStack insertStack(ItemStack stack, int slot) {
-        if (items[slot] == null) {
+        if(items[slot] == null) {
             items[slot] = stack;
         } else {
-            if (items[slot].isItemEqual(stack)) {
+            if(items[slot].isItemEqual(stack)) {
                 stack.stackSize += items[slot].stackSize;
-                if (stack.stackSize > getInventoryStackLimit()) {
+                if(stack.stackSize > getInventoryStackLimit()) {
                     items[slot] = stack.splitStack(getInventoryStackLimit());
                     return stack;
                 } else {
@@ -45,7 +44,7 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
     }
 
     public void showSlots() {
-        for (int i = 0; i < getSizeInventory(); ++i) {
+        for(int i = 0; i < getSizeInventory(); ++i) {
             setInventorySlotContents(i, new ItemStack(Block.getBlockById(i + 1)));
         }
     }
@@ -55,20 +54,17 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
     }
 
     public ItemStack decrStackSize(int slot, int amount) {
-        if (this.items[slot] != null) {
+        if(this.items[slot] != null) {
             ItemStack stack;
-
-            if (this.items[slot].stackSize <= amount) {
+            if(this.items[slot].stackSize <= amount) {
                 stack = this.items[slot];
                 this.items[slot] = null;
                 return stack;
             } else {
                 stack = this.items[slot].splitStack(amount);
-
-                if (this.items[slot].stackSize == 0) {
+                if(this.items[slot].stackSize == 0) {
                     this.items[slot] = null;
                 }
-
                 return stack;
             }
         } else {
@@ -78,8 +74,7 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
 
     public void setInventorySlotContents(int slot, ItemStack stack) {
         this.items[slot] = stack;
-
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
+        if(stack != null && stack.stackSize > this.getInventoryStackLimit()) {
             stack.stackSize = this.getInventoryStackLimit();
         }
     }
@@ -110,7 +105,6 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
 
     public int[] getAccessibleSlotsFromSide(int side) {
         return side == 0 ? slotsBottom : (side == 1 ? slotsTop : slotsSides);
-        //    return new int[]{0, this.getSizeInventory()-1};
     }
 
     public boolean canInsertItem(int slot, ItemStack item, int side) {
@@ -122,12 +116,11 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
     }
 
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return (this.getWorldObj().getTileEntity(xCoord, yCoord, zCoord) == this) && (player
-                .getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64.0D);
+        return (this.getWorldObj().getTileEntity(xCoord, yCoord, zCoord) == this) && (player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64.0D);
     }
 
     public ItemStack getStackInSlotOnClosing(int slot) {
-        if (this.items[slot] != null) {
+        if(this.items[slot] != null) {
             ItemStack itemstack = this.items[slot];
             this.items[slot] = null;
             return itemstack;
@@ -136,27 +129,24 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
         }
     }
 
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
         NBTTagList nbttaglist = tagCompound.getTagList("Items", 10);
         this.items = new ItemStack[this.getSizeInventory()];
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+        for(int i = 0; i < nbttaglist.tagCount(); ++i) {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             byte slot = nbttagcompound1.getByte("Slot");
-
-            if (slot >= 0 && slot < this.items.length) {
+            if(slot >= 0 && slot < this.items.length) {
                 this.items[slot] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
 
-        if (tagCompound.hasKey("CustomName", 8)) {
+        if(tagCompound.hasKey("CustomName", 8)) {
             this.containerName = tagCompound.getString("CustomName");
         }
     }
@@ -165,18 +155,17 @@ public class GenericInventory extends TileEntity implements ISidedInventory {
         super.writeToNBT(tagCompound);
         NBTTagList NBTList = new NBTTagList();
 
-        for (int slot = 0; slot < this.items.length; ++slot) {
-            if (this.items[slot] != null) {
+        for(int slot = 0; slot < this.items.length; ++slot) {
+            if(this.items[slot] != null) {
                 NBTTagCompound NBTCompound = new NBTTagCompound();
-                NBTCompound.setByte("Slot", (byte) slot);
+                NBTCompound.setByte("Slot", (byte)slot);
                 this.items[slot].writeToNBT(NBTCompound);
                 NBTList.appendTag(NBTCompound);
             }
         }
 
         tagCompound.setTag("Items", NBTList);
-
-        if (this.hasCustomInventoryName()) {
+        if(this.hasCustomInventoryName()) {
             tagCompound.setString("CustomName", this.containerName);
         }
     }

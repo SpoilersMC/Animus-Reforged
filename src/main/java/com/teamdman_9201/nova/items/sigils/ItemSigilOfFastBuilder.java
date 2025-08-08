@@ -1,10 +1,13 @@
 package com.teamdman_9201.nova.items.sigils;
 
+import com.teamdman_9201.nova.NOVA;
+
 import WayofTime.alchemicalWizardry.api.items.interfaces.ArmourUpgrade;
 import WayofTime.alchemicalWizardry.common.items.EnergyItems;
-import com.teamdman_9201.nova.NOVA;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -37,9 +40,9 @@ public class ItemSigilOfFastBuilder extends EnergyItems implements ArmourUpgrade
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List data, boolean wat) {
-        if (!(stack.getTagCompound() == null)) {
+        if(!(stack.getTagCompound() == null)) {
             data.add(StatCollector.translateToLocal("tooltip.owner.currentowner") + stack.getTagCompound().getString("ownerName"));
-            if (stack.getTagCompound().getBoolean("isActive")) {
+            if(stack.getTagCompound().getBoolean("isActive")) {
                 data.add(StatCollector.translateToLocal("tooltip.sigil.state.activated"));
             } else {
                 data.add(StatCollector.translateToLocal("tooltip.sigil.state.deactivated"));
@@ -47,9 +50,7 @@ public class ItemSigilOfFastBuilder extends EnergyItems implements ArmourUpgrade
         }
     }
 
-
-    @Override
-    @SideOnly(Side.CLIENT)
+    @Override @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
         this.activeIcon = iconRegister.registerIcon(NOVA.MODID + ":itemSigilOfFastBuilderActive");
         this.passiveIcon = iconRegister.registerIcon(NOVA.MODID + ":itemSigilOfFastBuilderDeactivated");
@@ -57,21 +58,20 @@ public class ItemSigilOfFastBuilder extends EnergyItems implements ArmourUpgrade
 
     @Override
     public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) {
-        if (stack.getTagCompound() == null)
+        if(stack.getTagCompound() == null)
             stack.setTagCompound(new NBTTagCompound());
         NBTTagCompound tag = stack.getTagCompound();
 
-        if (tag.getBoolean("isActive")) {
+        if(tag.getBoolean("isActive")) {
             return this.activeIcon;
         } else {
             return this.passiveIcon;
         }
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
+    @Override @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int par1) {
-        if (par1 == 1) {
+        if(par1 == 1) {
             return this.activeIcon;
         } else {
             return this.passiveIcon;
@@ -80,7 +80,7 @@ public class ItemSigilOfFastBuilder extends EnergyItems implements ArmourUpgrade
 
     @Override
     public ItemStack onItemRightClick(ItemStack sigil, World world, EntityPlayer player) {
-        if (sigil.getTagCompound() == null)
+        if(sigil.getTagCompound() == null)
             EnergyItems.checkAndSetItemOwner(sigil, player);
 
         NBTTagCompound tag = sigil.getTagCompound();
@@ -99,27 +99,25 @@ public class ItemSigilOfFastBuilder extends EnergyItems implements ArmourUpgrade
         return true;
     }
 
-    @Override
-    //    @SideOnly(Side.CLIENT)
+    @Override // @SideOnly(Side.CLIENT)
     public void onUpdate(ItemStack stack, World world, Entity ent, int meta, boolean wat) {
-        if (!stack.hasTagCompound() || !stack.getTagCompound().getBoolean("isActive"))
+        if(!stack.hasTagCompound() || !stack.getTagCompound().getBoolean("isActive"))
             return;
-        if (!(ent instanceof EntityPlayer))
+        if(!(ent instanceof EntityPlayer))
             return;
-        if (!EnergyItems.syphonBatteries(stack, (EntityPlayer) ent, getEnergyUsed()))
+        if(!EnergyItems.syphonBatteries(stack, (EntityPlayer)ent, getEnergyUsed()))
             return;
-        if (!((EntityPlayer) ent).capabilities.isCreativeMode)
-            if (((EntityPlayer) ent).getHeldItem() == null || Block.getBlockFromItem(((EntityPlayer) ent).getHeldItem().getItem()) == Blocks.air)
+        if(!((EntityPlayer)ent).capabilities.isCreativeMode)
+            if(((EntityPlayer)ent).getHeldItem() == null || Block.getBlockFromItem(((EntityPlayer)ent).getHeldItem().getItem()) == Blocks.air)
                 return;
         ItemSigilOfFastBuilder.removeDelay();
     }
 
     @Override
     public void onArmourUpdate(World world, EntityPlayer player, ItemStack thisItemStack) {
-        if (!(player).capabilities.isCreativeMode)
-            if ((player).getHeldItem() == null || Block.getBlockFromItem((player).getHeldItem().getItem()) == Blocks.air)
+        if(!(player).capabilities.isCreativeMode)
+            if((player).getHeldItem() == null || Block.getBlockFromItem((player).getHeldItem().getItem()) == Blocks.air)
                 return;
-
         ItemSigilOfFastBuilder.removeDelay();
     }
 
@@ -129,13 +127,11 @@ public class ItemSigilOfFastBuilder extends EnergyItems implements ArmourUpgrade
             delay.setAccessible(true);
             try {
                 delay.set(Minecraft.getMinecraft(), 0);
-            } catch (IllegalAccessException nsfe) {
+            } catch(IllegalAccessException nsfe) {
                 throw new RuntimeException(nsfe);
             }
-        } catch (NoSuchFieldException nsfe) {
+        } catch(NoSuchFieldException nsfe) {
             throw new RuntimeException(nsfe);
         }
     }
-
-
 }

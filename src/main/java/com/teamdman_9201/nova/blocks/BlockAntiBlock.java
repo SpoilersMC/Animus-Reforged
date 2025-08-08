@@ -1,8 +1,10 @@
 package com.teamdman_9201.nova.blocks;
 
 import com.teamdman_9201.nova.NOVA;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,10 +19,10 @@ import java.util.Random;
  */
 public class BlockAntiBlock extends Block {
     public static int maxSpread = 512;
-    public        int toRepl    = -1;
-    public        int spread    = 0;
+    public int toRepl = -1;
+    public int spread = 0;
     @SideOnly(Side.CLIENT)
-    private IIcon        tex;
+    private IIcon tex;
 
     public BlockAntiBlock() {
         super(Material.dragonEgg);
@@ -32,20 +34,17 @@ public class BlockAntiBlock extends Block {
         super.breakBlock(world, x, y, z, me, meta);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
+    @Override @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return tex;
     }
 
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
-        world.scheduleBlockUpdate(x, y, z, this, (int) world.rand.nextFloat()*20 + 5);
+        world.scheduleBlockUpdate(x, y, z, this, (int)world.rand.nextFloat() * 20 + 5);
     }
 
-
-    @Override
-    @SideOnly(Side.CLIENT)
+    @Override @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
         tex = reg.registerIcon(NOVA.MODID + ":blockAntiBlock");
     }
@@ -63,33 +62,29 @@ public class BlockAntiBlock extends Block {
         spread = spreaded;
     }
 
-
     @Override
     public void updateTick(World world, int x, int y, int z, Random rnd) {
         boolean decaying = world.getBlockMetadata(x, y, z) == 1;
-        if (spread > maxSpread && !decaying)
-            return;
-        for (int ox = -1; ox < 2; ox += 1) {
-            for (int oy = -1; oy < 2; oy += 1) {
-                for (int oz = -1; oz < 2; oz += 1) {
+        if(spread > maxSpread && !decaying) return;
+        for(int ox = -1; ox < 2; ox += 1) {
+            for(int oy = -1; oy < 2; oy += 1) {
+                for(int oz = -1; oz < 2; oz += 1) {
                     Block adj = world.getBlock(x + ox, y + oy, z + oz);
-                    if (decaying) {
-                        if (adj == NOVA.blockAntiBlock) {
+                    if(decaying) {
+                        if(adj == NOVA.blockAntiBlock) {
                             world.setBlockMetadataWithNotify(x + ox, y + oy, z + oz, 1, 1);
-                            world.scheduleBlockUpdate(x + ox, y + oy, z + oz, adj, (int) world.rand.nextFloat() * 20+5);
+                            world.scheduleBlockUpdate(x + ox, y + oy, z + oz, adj, (int)world.rand.nextFloat() * 20 + 5);
                         }
                     } else {
-                        if (Block.getIdFromBlock(adj) == toRepl && adj.getBlockHardness(world, x, y, z) != -1) {
+                        if(Block.getIdFromBlock(adj) == toRepl && adj.getBlockHardness(world, x, y, z) != -1) {
                             world.setBlock(x + ox, y + oy, z + oz, NOVA.blockAntiBlock);
-                            ((BlockAntiBlock) world.getBlock(x + ox, y + oy, z + oz)).setData(toRepl, spread + 1);
+                            ((BlockAntiBlock)world.getBlock(x + ox, y + oy, z + oz)).setData(toRepl, spread + 1);
                         }
                     }
                 }
             }
         }
-        if (decaying)
-            world.setBlockToAir(x, y, z);
+        if(decaying) world.setBlockToAir(x, y, z);
         setTickRandomly(false);
     }
 }
-

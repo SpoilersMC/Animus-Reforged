@@ -2,6 +2,15 @@ package com.teamdman_9201.nova.items;
 
 import com.teamdman_9201.nova.NOVA;
 
+import WayofTime.alchemicalWizardry.common.IDemon;
+import WayofTime.alchemicalWizardry.common.demonVillage.demonHoard.demon.IHoardDemon;
+import WayofTime.alchemicalWizardry.common.items.DaggerOfSacrifice;
+import WayofTime.alchemicalWizardry.common.spell.complex.effect.SpellHelper;
+import WayofTime.alchemicalWizardry.common.tileEntity.TEAltar;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -21,14 +30,6 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import WayofTime.alchemicalWizardry.common.IDemon;
-import WayofTime.alchemicalWizardry.common.demonVillage.demonHoard.demon.IHoardDemon;
-import WayofTime.alchemicalWizardry.common.items.DaggerOfSacrifice;
-import WayofTime.alchemicalWizardry.common.spell.complex.effect.SpellHelper;
-import WayofTime.alchemicalWizardry.common.tileEntity.TEAltar;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class ItemBoundSickle extends DaggerOfSacrifice {
     private float weaponDamage;
     @SideOnly(Side.CLIENT)
@@ -43,15 +44,14 @@ public class ItemBoundSickle extends DaggerOfSacrifice {
 
     @Override
     public boolean findAndFillAltar(World world, EntityLivingBase sacrifice, int amount) {
-        int     posX        = (int) Math.round(sacrifice.posX - 0.5f);
-        int     posY        = (int) sacrifice.posY;
-        int     posZ        = (int) Math.round(sacrifice.posZ - 0.5f);
+        int posX = (int)Math.round(sacrifice.posX - 0.5f);
+        int posY = (int)sacrifice.posY;
+        int posZ = (int)Math.round(sacrifice.posZ - 0.5f);
         TEAltar altarEntity = this.getAltar(world, posX, posY, posZ);
 
-        if (altarEntity == null) {
+        if(altarEntity == null)
             return false;
-        }
-        if (altarEntity.getCurrentBlood() + amount > altarEntity.getCapacity())
+        if(altarEntity.getCurrentBlood() + amount > altarEntity.getCapacity())
             return false;
         altarEntity.sacrificialDaggerCall(amount, true);
         altarEntity.startCycle();
@@ -61,13 +61,13 @@ public class ItemBoundSickle extends DaggerOfSacrifice {
     @Override
     public TEAltar getAltar(World world, int x, int y, int z) {
         TileEntity tileEntity = null;
-        int        radius     = 5;
-        for (int i = -radius; i <= radius; i++) {
-            for (int j = -radius; j <= radius; j++) {
-                for (int k = -radius; k <= radius; k++) {
+        int radius = 5;
+        for(int i = -radius; i <= radius; i++) {
+            for(int j = -radius; j <= radius; j++) {
+                for(int k = -radius; k <= radius; k++) {
                     tileEntity = world.getTileEntity(i + x, k + y, j + z);
-                    if (tileEntity instanceof TEAltar)
-                        return (TEAltar) tileEntity;
+                    if(tileEntity instanceof TEAltar)
+                        return (TEAltar)tileEntity;
                 }
             }
         }
@@ -81,52 +81,44 @@ public class ItemBoundSickle extends DaggerOfSacrifice {
 
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase entity_, EntityLivingBase player) {
-        double        x      = entity_.posX;
-        double        y      = entity_.posY;
-        double        z      = entity_.posZ;
-        int           d0     = 10;
+        double x = entity_.posX;
+        double y = entity_.posY;
+        double z = entity_.posZ;
+        int d0 = 10;
         AxisAlignedBB region = AxisAlignedBB.getBoundingBox(x, y, z, x, y, z).expand(d0, d0, d0);
-        List<EntityLivingBase> entities = entity_.worldObj.getEntitiesWithinAABB(EntityLivingBase
-                .class, region);
-        if (entities == null || entities.isEmpty())
+        List<EntityLivingBase> entities = entity_.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, region);
+        if(entities == null || entities.isEmpty())
             return false;
-        for (EntityLivingBase entity : entities) {
-            if (entity instanceof EntityPlayer)
+        for(EntityLivingBase entity : entities) {
+            if(entity instanceof EntityPlayer)
                 continue;
-            if (player == null || entity == null || player.worldObj.isRemote || (player
-                    instanceof EntityPlayer && SpellHelper.isFakePlayer(player.worldObj,
-                    (EntityPlayer) player)))
+            if(player == null || entity == null || player.worldObj.isRemote || (player instanceof EntityPlayer && SpellHelper.isFakePlayer(player.worldObj, (EntityPlayer)player)))
                 continue;
-            if (entity instanceof IHoardDemon || entity instanceof EntityWither || entity
-                    instanceof EntityDragon || entity instanceof EntityPlayer || entity
-                    instanceof IBossDisplayData || entity.isDead || entity.getHealth() < 0.5f)
+            if(entity instanceof IHoardDemon || entity instanceof EntityWither || entity instanceof EntityDragon || entity instanceof EntityPlayer || entity instanceof IBossDisplayData || entity.isDead || entity.getHealth() < 0.5f)
                 continue;
-
-            if (entity instanceof IDemon) {
-                ((IDemon) entity).setDropCrystal(false);
+            if(entity instanceof IDemon) {
+                ((IDemon)entity).setDropCrystal(false);
                 this.findAndNotifyAltarOfDemon(entity.worldObj, entity);
             }
 
             int blood = 500;
-            if (entity instanceof EntityVillager)
+            if(entity instanceof EntityVillager)
                 blood = 2000;
-            if (entity instanceof EntitySlime)
+            if(entity instanceof EntitySlime)
                 blood = 150;
-            if (entity instanceof EntityEnderman)
+            if(entity instanceof EntityEnderman)
                 blood = 200;
-            if (entity instanceof EntityAnimal)
+            if(entity instanceof EntityAnimal)
                 blood = 250;
-            if (entity.isChild())
+            if(entity.isChild())
                 blood /= 2;
 
-
-            if (findAndFillAltar(entity.worldObj, entity, blood)) {
+            if(findAndFillAltar(entity.worldObj, entity, blood)) {
                 double posX = entity.posX;
                 double posY = entity.posY;
                 double posZ = entity.posZ;
-                for (int i = 0; i < 8; i++) {
-                    SpellHelper.sendIndexedParticleToAllAround(entity.worldObj, posX, posY, posZ,
-                            20, entity.worldObj.provider.dimensionId, 1, posX, posY, posZ);
+                for(int i = 0; i < 8; i++) {
+                    SpellHelper.sendIndexedParticleToAllAround(entity.worldObj, posX, posY, posZ, 20, entity.worldObj.provider.dimensionId, 1, posX, posY, posZ);
                 }
                 entity.setHealth(-1);
                 entity.onDeath(DamageSource.generic);
@@ -135,8 +127,7 @@ public class ItemBoundSickle extends DaggerOfSacrifice {
         return false;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
+    @Override @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
         icon = iconRegister.registerIcon(NOVA.MODID + ":itemBoundSickle");
     }
