@@ -77,7 +77,6 @@ public class BlockBloodLeaves extends BlockLeaves {
                 int l1;
 
                 if(world.checkChunksExist(posX - i1, posY - i1, posZ - i1, posX + i1, posY + i1, posZ + i1)) {
-                    // System.out.println("leaveS: if chunk exists, do stuff");
                     int i2;
                     int j2;
 

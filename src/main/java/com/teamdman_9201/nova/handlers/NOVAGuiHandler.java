@@ -14,7 +14,6 @@ public class NOVAGuiHandler implements IGuiHandler {
 
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        System.out.println("GUI Called with " + ID);
         switch(ID) {
         case NOVA.guiDirtChest:
             return new GuiDirtChest(player.inventory, (TileDirtChest)world.getTileEntity(x, y, z));
