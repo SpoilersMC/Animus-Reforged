@@ -1,6 +1,5 @@
 package com.teamdman_9201.nova;
 
-import com.teamdman_9201.nova.blocks.BlockAntiBlock;
 import com.teamdman_9201.nova.enchantments.EnchantmentPow;
 import com.teamdman_9201.nova.items.sigils.ItemSigilOfTransposition;
 
@@ -37,7 +36,6 @@ public class NOVAConfig {
         for(String unloc : blacklist)
             NOVA.blacklist.put(unloc, config.get("Blacklist", unloc, false).getBoolean());
 
-        BlockAntiBlock.maxSpread = config.get("General", "AntiBlock Max Spread", 512).getInt();
         ItemSigilOfTransposition.canMoveTiles = config.get("General", "Transposition Can Move Tiles", true).getBoolean();
         NOVA.ritualData.put("ritualSol", config.get("Ritual Blacklist", "Ritual of Sol", false).getBoolean() ? 1 : 0);
         NOVA.ritualData.put("ritualLuna", config.get("Ritual Blacklist", "Ritual of Luna", false).getBoolean() ? 1 : 0);

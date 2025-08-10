@@ -65,12 +65,9 @@ public class NOVA {
     public static Block blockDirtChest;
     public static Block blockLeaves;
     public static Block blockSapling;
-    public static Block blockAntiBlock;
     public static Enchantment enchantPow;
     public static ItemBlock itemBlockSapling;
-    public static ItemBlock itemBlockAntiBlock;
     public static Item itemSigilOfTransposition;
-    public static Item itemSigilOfConsumption;
     public static Item itemSigilOfFastBuilder;
     public static Item itemUnstableCoal;
     public static Item itemBoundSickle;
@@ -110,7 +107,6 @@ public class NOVA {
     private void initItemsandBlocks() {
         setupBlock(blockDirtChest, "blockDirtChest", mainTab, 3.5F);
         setupBlock(blockLeaves, "blockLeaves", mainTab, 0.1F);
-        setupItemBlock(blockAntiBlock, ItemBlockAntiBlock.class, "blockAntiBlock", mainTab, 2.0F);
         setupItemBlock(blockSapling, ItemBlockBloodSapling.class, "blockSapling", mainTab, 0);
         setupItem(itemSigilOfTransposition, "itemSigilOfTransposition", mainTab);
         setupItem(itemUnstableCoal, "itemUnstableCoal", mainTab);
@@ -123,7 +119,6 @@ public class NOVA {
         setupItem(itemSigilOfChains, "itemSigilOfChains", mainTab);
         setupItem(itemMobSoul, "itemMobSoul", mainTab);
         setupItem(itemBloodApple, "itemBloodApple", mainTab);
-        setupItem(itemSigilOfConsumption, "itemSigilOfConsumption", mainTab);
         setupItem(itemAltarDiviner, "itemAltarDiviner", mainTab);
         setupItem(itemSigilOfFastBuilder, "itemSigilOfFastBuilder", mainTab);
         setupItem(itemHealingFragment, "itemHealingFragment", mainTab);
@@ -141,8 +136,6 @@ public class NOVA {
             GameRegistry.addRecipe(new ShapedBloodOrbRecipe(new ItemStack(itemSigilOfChains), "ABA", "DCD", "AEA", 'A', Blocks.iron_bars, 'B', Items.glass_bottle, 'C', ModItems.imbuedSlate, 'D', Items.ender_pearl, 'E', ModItems.magicianBloodOrb));
         if(!blacklist.get("itemSigilOfTransposition"))
             GameRegistry.addRecipe(new ShapedBloodOrbRecipe(new ItemStack(itemSigilOfTransposition), "ABA", "BCB", "ADA", 'A', Blocks.obsidian, 'B', Items.ender_pearl, 'C', ModItems.demonicSlate, 'D', ModItems.masterBloodOrb));
-        if(!blacklist.get("itemSigilOfConsumption"))
-            GameRegistry.addRecipe(new ShapedBloodOrbRecipe(new ItemStack(itemSigilOfConsumption), "ABA", "BCB", "ADA", 'A', Blocks.end_stone, 'B', Blocks.redstone_lamp, 'C', ModItems.demonicSlate, 'D', ModItems.masterBloodOrb));
         if(!blacklist.get("itemSigilOfFastBuilder"))
             GameRegistry.addRecipe(new ShapedBloodOrbRecipe(new ItemStack(itemSigilOfFastBuilder), "ABA", "BCB", "ADA", 'A', Items.sugar, 'B', Items.potionitem, 'C', ModItems.demonicSlate, 'D', ModItems.archmageBloodOrb));
         if(!blacklist.get("itemAltarDiviner"))
@@ -178,7 +171,6 @@ public class NOVA {
         blockDirtChest = new BlockDirtChest();
         blockLeaves = new BlockBloodLeaves();
         blockSapling = new BlockBloodSapling();
-        blockAntiBlock = new BlockAntiBlock();
         itemBoundSickle = new ItemBoundSickle();
         itemWoodSickle = new ItemBasicSickle(Item.ToolMaterial.WOOD);
         itemStoneSickle = new ItemBasicSickle(Item.ToolMaterial.STONE);
@@ -187,12 +179,10 @@ public class NOVA {
         itemDiamondSickle = new ItemBasicSickle(Item.ToolMaterial.EMERALD);
         itemSigilOfTransposition = new ItemSigilOfTransposition();
         itemUnstableCoal = new ItemUnstableCoal();
-        itemBlockAntiBlock = new ItemBlockAntiBlock(blockAntiBlock);
         itemBlockSapling = new ItemBlockBloodSapling(blockSapling);
         itemSigilOfChains = new ItemSigilOfChains();
         itemMobSoul = new ItemMobSoul();
         itemBloodApple = new ItemBloodApple(2, 0.1F, false);
-        itemSigilOfConsumption = new ItemSigilOfConsumption();
         itemAltarDiviner = new ItemAltarDiviner();
         itemSigilOfFastBuilder = new ItemSigilOfFastBuilder();
         itemHealingFragment = new ItemHealingFragment();
