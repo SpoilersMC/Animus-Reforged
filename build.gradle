@@ -96,7 +96,7 @@ dependencies {
 }
 
 jar {
-    classifier = 'universal'
+    classifier = 'reforged'
     manifest.mainAttributes(
             "Built-By": System.getProperty('user.name'),
             "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
