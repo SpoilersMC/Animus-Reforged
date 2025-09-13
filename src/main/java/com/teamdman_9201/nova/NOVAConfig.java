@@ -37,25 +37,25 @@ public class NOVAConfig {
             NOVA.blacklist.put(unloc, config.get("Blacklist", unloc, false).getBoolean());
 
         ItemSigilOfTransposition.canMoveTiles = config.get("General", "Transposition Can Move Tiles", true).getBoolean();
-        NOVA.ritualData.put("ritualSol", config.get("Ritual Blacklist", "Ritual of Sol", false).getBoolean() ? 1 : 0);
-        NOVA.ritualData.put("ritualLuna", config.get("Ritual Blacklist", "Ritual of Luna", false).getBoolean() ? 1 : 0);
-        NOVA.ritualData.put("ritualUncreate", config.get("Ritual Blacklist", "Ritual of Uncreation", false).getBoolean() ? 1 : 0);
-        NOVA.ritualData.put("ritualEntropy", config.get("Ritual Blacklist", "Ritual of Entropy", false).getBoolean() ? 1 : 0);
+        NOVA.ritualData.put("ritual.sol", config.get("Ritual Blacklist", "Ritual of Sol", false).getBoolean() ? 1 : 0);
+        NOVA.ritualData.put("ritual.luna", config.get("Ritual Blacklist", "Ritual of Luna", false).getBoolean() ? 1 : 0);
+        NOVA.ritualData.put("ritual.uncreate", config.get("Ritual Blacklist", "Ritual of Uncreation", false).getBoolean() ? 1 : 0);
+        NOVA.ritualData.put("ritual.entropy", config.get("Ritual Blacklist", "Ritual of Entropy", false).getBoolean() ? 1 : 0);
 
-        NOVA.ritualData.put("levelSol", config.get("Ritual Levels", "Sol Level", 1).getInt());
-        NOVA.ritualData.put("levelLuna", config.get("Ritual Levels", "Luna Level", 2).getInt());
-        NOVA.ritualData.put("levelUncreate", config.get("Ritual Levels", "Uncreation Level", 2).getInt());
-        NOVA.ritualData.put("levelEntropy", config.get("Ritual Levels", "Entropy Level", 1).getInt());
+        NOVA.ritualData.put("level.sol", config.get("Ritual Levels", "Sol Level", 1).getInt());
+        NOVA.ritualData.put("level.luna", config.get("Ritual Levels", "Luna Level", 2).getInt());
+        NOVA.ritualData.put("level.uncreate", config.get("Ritual Levels", "Uncreation Level", 2).getInt());
+        NOVA.ritualData.put("level.entropy", config.get("Ritual Levels", "Entropy Level", 1).getInt());
 
-        NOVA.ritualData.put("upkeepSol", config.get("Ritual Costs", "Sol Upkeep", 10).getInt());
-        NOVA.ritualData.put("upkeepLuna", config.get("Ritual Costs", "Luna Upkeep", 20).getInt());
-        NOVA.ritualData.put("upkeepUncreate", config.get("Ritual Costs", "Uncreation Upkeep", 10).getInt());
-        NOVA.ritualData.put("upkeepEntropy", config.get("Ritual Costs", "Entropy Upkeep", 10).getInt());
+        NOVA.ritualData.put("upkeep.sol", config.get("Ritual Costs", "Sol Upkeep", 10).getInt());
+        NOVA.ritualData.put("upkeep.luna", config.get("Ritual Costs", "Luna Upkeep", 20).getInt());
+        NOVA.ritualData.put("upkeep.uncreate", config.get("Ritual Costs", "Uncreation Upkeep", 10).getInt());
+        NOVA.ritualData.put("upkeep.entropy", config.get("Ritual Costs", "Entropy Upkeep", 10).getInt());
 
-        NOVA.ritualData.put("initSol", config.get("Ritual Costs", "Sol Init", 1000).getInt());
-        NOVA.ritualData.put("initLuna", config.get("Ritual Costs", "Luna Init", 10000).getInt());
-        NOVA.ritualData.put("initUncreate", config.get("Ritual Costs", "Uncreation Init", 50000).getInt());
-        NOVA.ritualData.put("initEntropy", config.get("Ritual Costs", "Entropy Init", 1000).getInt());
+        NOVA.ritualData.put("init.sol", config.get("Ritual Costs", "Sol Init", 1000).getInt());
+        NOVA.ritualData.put("init.luna", config.get("Ritual Costs", "Luna Init", 10000).getInt());
+        NOVA.ritualData.put("init.uncreate", config.get("Ritual Costs", "Uncreation Init", 50000).getInt());
+        NOVA.ritualData.put("init.entropy", config.get("Ritual Costs", "Entropy Init", 1000).getInt());
 
         config.save();
     }

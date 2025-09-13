@@ -25,7 +25,7 @@ import java.util.List;
  * Created by TeamDman on 2015-05-28.
  */
 public class RitualEffectUncreation extends RitualEffect {
-    private int upkeep = NOVA.ritualData.get("upkeepUncreate");
+    private int upkeep = NOVA.ritualData.get("upkeep.uncreate");
 
     public int getCostPerRefresh() {
         return upkeep;

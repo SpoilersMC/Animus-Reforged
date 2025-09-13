@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class RitualEffectLuna extends RitualEffect {
     public int reagentDrain = 5;
-    private int upkeep = NOVA.ritualData.get("upkeepLuna");
+    private int upkeep = NOVA.ritualData.get("upkeep.luna");
 
     @Override
     public int getCostPerRefresh() {

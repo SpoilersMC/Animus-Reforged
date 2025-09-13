@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class RitualEffectSol extends RitualEffect {
     public int reagentDrain = 5;
-    private int upkeep = NOVA.ritualData.get("upkeepSol");
+    private int upkeep = NOVA.ritualData.get("upkeep.sol");
 
     public boolean checkSpot(World world, int[] pos) {
         int x = pos[0];

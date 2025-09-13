@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class RitualEffectEntropy extends RitualEffect {
     HashMap<Item, Integer> indexed = new HashMap<Item, Integer>();
-    private int upkeep = NOVA.ritualData.get("upkeepEntropy");
+    private int upkeep = NOVA.ritualData.get("upkeep.entropy");
 
     public RitualEffectEntropy() {
         indexed.put(ItemBlock.getItemFromBlock(Blocks.cobblestone), 1);

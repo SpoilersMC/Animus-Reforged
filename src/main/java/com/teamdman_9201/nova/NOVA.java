@@ -157,10 +157,10 @@ public class NOVA {
     }
 
     private void initRituals() {
-        setupRitual("Sol", new RitualEffectSol());
-        setupRitual("Luna", new RitualEffectLuna());
-        setupRitual("Uncreate", new RitualEffectUncreation());
-        setupRitual("Entropy", new RitualEffectEntropy());
+        setupRitual("sol", new RitualEffectSol());
+        setupRitual("luna", new RitualEffectLuna());
+        setupRitual("uncreate", new RitualEffectUncreation());
+        setupRitual("entropy", new RitualEffectEntropy());
     }
 
     private void initTiles() {
@@ -232,7 +232,7 @@ public class NOVA {
     }
 
     private void setupRitual(String name, RitualEffect effect) {
-        if(ritualData.get("ritual" + name) == 0)
-            Rituals.registerRitual("ritual" + name, ritualData.get("level" + name), ritualData.get("init" + name), effect, StatCollector.translateToLocal("ritual.NOVA." + name.toLowerCase()));
+        if(ritualData.get("ritual." + name) == 0)
+            Rituals.registerRitual("NOVA." + name, ritualData.get("level." + name), ritualData.get("init." + name), effect, StatCollector.translateToLocal("ritual.NOVA." + name + ".name"));
     }
 }
